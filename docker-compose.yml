@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: timesheet-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: manel   # Le mot de passe root pour MySQL
+      MYSQL_DATABASE: timesheetdb  # Base de données à créer
+    ports:
+      - "3307:3306"                # Redirige le port local 3307 vers le port 3306 du conteneur
+    volumes:
+      - timesheetvol:/var/lib/mysql # Volume pour persister les données MySQL
+
+  timesheet:
+    build: .
+    container_name: timesheet-app
+    depends_on:
+      - mysql                       # L'application dépend de MySQL
+    ports:
+      - "8089:8089"                 # Expose le port 8089 pour l'application
+
+volumes:
+  timesheetvol:   # Définir le volume pour persister les données de MySQL
+
