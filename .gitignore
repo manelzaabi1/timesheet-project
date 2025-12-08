@@ -1,0 +1,13 @@
+target/
+*.log
+*.tmp
+*.iml
+.idea/
+.DS_Store
+*.class
+timesheet-deployment.yml
+ERROR
+[auth]
+[internal]
+resolve
+transferring
